@@ -1,0 +1,36 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+#app-container {
+    background: #1e1e1e;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    width: 350px;
+    text-align: center;
+}
+.hidden { display: none !important; }
+.section { display: flex; flex-direction: column; gap: 1rem; }
+input, button {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+}
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+button:hover { background-color: #0056b3; }
+#error-msg { color: #ff4444; font-size: 0.9rem; }
+.invite-box { background: #2c2c2c; padding: 10px; border-radius: 6px; }
+#invite-link-display { width: 90%; background: #121212; color: #4caf50; text-align: center; }

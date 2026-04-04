@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Audio Link</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div id="app-container">
+        <div id="login-ui" class="section">
+            <h2>Host Broadcast</h2>
+            <input type="password" id="password-input" placeholder="Enter Host Password">
+            <button id="login-btn">Login</button>
+            <p id="error-msg"></p>
+        </div>
+
+        <div id="streamer-ui" class="section hidden">
+            <h2>Live Broadcast</h2>
+            <div class="invite-box">
+                <p>Share this one-time link with your listener:</p>
+                <input type="text" id="invite-link-display" readonly>
+            </div>
+            <button id="start-capture-btn">1. Capture System Audio</button>
+            <p id="streamer-status">Waiting for listener...</p>
+        </div>
+
+        <div id="listener-ui" class="section hidden">
+            <h2>Listener Access</h2>
+            <p id="listener-status">Ready to connect.</p>
+            <button id="join-btn">Connect & Listen</button>
+            <audio id="remote-audio" controls autoplay></audio>
+        </div>
+    </div>
+
+    <script src="streamer.js"></script>
+    <script src="listener.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
