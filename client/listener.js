@@ -12,7 +12,7 @@ window.initListener = (socket, turnConfig) => {
 
             // When the audio track arrives, attach it to the HTML5 audio element
             peerConnection.ontrack = event => {
-                document.getElementById('listener-status').innerText = "LIVE. Receiving Audio...";
+                document.getElementById('listener-status').innerHTML = `<span style="color:red;">LIVE</span> Receiving Audio...`;
                 audioElement.srcObject = event.streams[0];
             };
         }
