@@ -35,16 +35,36 @@ window.initStreamer = (socket, turnConfig) => {
             if (!audioTrack) throw new Error("No audio track found. Did you check 'Share Audio'?");
             
             stream.getVideoTracks().forEach(track => track.stop()); 
+
+            // --- NEW: Listen for the native "Stop Sharing" click ---
+            audioTrack.onended = () => {
+                document.getElementById('streamer-status').innerText = "Broadcast Paused. Click to resume.";
+                const captureBtn = document.getElementById('start-capture-btn');
+                captureBtn.innerText = "Resume Broadcast";
+                captureBtn.classList.remove('hidden'); // Bring the button back!
+            };
+            // -------------------------------------------------------
             
             localStream = new MediaStream([audioTrack]);
             document.getElementById('start-capture-btn').classList.add('hidden');
 
-            // Did the listener already join while we were picking a screen?
-            if (isListenerReady) {
-                startWebRTC();
+            // --- NEW: The Hot-Swap Logic ---
+            if (peerConnection) {
+                // If a connection already exists, just swap the track seamlessly
+                const sender = peerConnection.getSenders().find(s => s.track && s.track.kind === 'audio');
+                if (sender) {
+                    sender.replaceTrack(audioTrack);
+                    document.getElementById('streamer-status').innerText = "Broadcasting Resumed!";
+                }
             } else {
-                document.getElementById('streamer-status').innerText = "Audio Captured. Waiting for Listener...";
+                // Normal startup logic (First time connecting)
+                if (isListenerReady) {
+                    startWebRTC();
+                } else {
+                    document.getElementById('streamer-status').innerText = "Audio Captured. Waiting for Listener...";
+                }
             }
+            // -------------------------------
 
         } catch (err) {
             alert(err.message);

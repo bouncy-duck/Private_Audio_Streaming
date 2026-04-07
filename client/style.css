@@ -34,3 +34,30 @@ button:hover { background-color: #0056b3; }
 #error-msg { color: #ff4444; font-size: 0.9rem; }
 .invite-box { background: #2c2c2c; padding: 10px; border-radius: 6px; }
 #invite-link-display { width: 90%; background: #121212; color: #4caf50; text-align: center; }
+/* --- New Copy Button Styles --- */
+.copy-container {
+    display: flex;
+    gap: 8px; /* Space between input and button */
+    justify-content: center;
+    align-items: stretch; /* Makes button same height as input */
+    width: 90%;
+    margin: 0 auto; /* Centers the container */
+}
+
+#invite-link-display {
+    flex-grow: 1; /* Forces the input box to take up the remaining space */
+    width: auto; /* Overrides the old 90% width */
+}
+
+#copy-link-btn {
+    background-color: #333333;
+    padding: 0 15px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#copy-link-btn:hover {
+    background-color: #555555;
+}

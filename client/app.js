@@ -49,3 +49,36 @@ socket.on('auth-error', (msg) => {
     errorMsg.innerText = msg;
     document.getElementById('listener-status').innerText = msg;
 });
+// --- Bulletproof Copy Link Feature ---
+document.getElementById('copy-link-btn').addEventListener('click', async () => {
+    const linkInput = document.getElementById('invite-link-display');
+    const copyBtn = document.getElementById('copy-link-btn');
+    
+    if (!linkInput.value) return; 
+
+    try {
+        // Method 1: Modern Clipboard API (Requires HTTPS or localhost)
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(linkInput.value);
+        } 
+        // Method 2: Legacy Fallback (For local HTTP testing)
+        else {
+            linkInput.select(); // Highlight the text
+            linkInput.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand('copy'); // Execute copy command
+            
+            // Remove the highlight so it looks clean
+            window.getSelection().removeAllRanges(); 
+        }
+        
+        // UX Feedback: Change the icon to a green checkmark
+        copyBtn.innerText = "✅";
+        setTimeout(() => {
+            copyBtn.innerText = "📋";
+        }, 2000);
+        
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+        alert("Unable to auto-copy. Please manually highlight and copy the link.");
+    }
+});

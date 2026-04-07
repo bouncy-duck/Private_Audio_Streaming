@@ -20,7 +20,10 @@
             <h2>Live Broadcast</h2>
             <div class="invite-box">
                 <p>Share this one-time link with your listener:</p>
-                <input type="text" id="invite-link-display" readonly>
+                <div class="copy-container">
+                    <input type="text" id="invite-link-display" readonly>
+                    <button id="copy-link-btn" title="Copy link">📋</button>
+                </div>
             </div>
             <button id="start-capture-btn">1. Capture System Audio</button>
             <p id="streamer-status">Waiting for listener...</p>
