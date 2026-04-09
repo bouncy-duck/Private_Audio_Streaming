@@ -72,9 +72,9 @@ document.getElementById('copy-link-btn').addEventListener('click', async () => {
         }
         
         // UX Feedback: Change the icon to a green checkmark
-        copyBtn.innerText = "✅";
+        copyBtn.innerHTML = `<ion-icon name="checkmark-circle-outline"></ion-icon>`;
         setTimeout(() => {
-            copyBtn.innerText = "📋";
+            copyBtn.innerHTML = `<ion-icon name="copy"></ion-icon>`;
         }, 2000);
         
     } catch (err) {
